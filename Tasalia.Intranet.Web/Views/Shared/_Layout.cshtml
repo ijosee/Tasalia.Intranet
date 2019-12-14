@@ -7,16 +7,20 @@
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <!-- custom from admin lte -->
         <link rel="stylesheet" href="~/lib/datatables/css/jquery.dataTables.css" />
         <link rel="stylesheet" href="~/lib/datatables/css/dataTables.bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootstrap-daterangepicker/daterangepicker.css" />
+        <link rel="stylesheet" href="~/lib/select2/css/select2.css" />
+        <link rel="stylesheet" href="~/lib/toastr.js/toastr.css" />
+        <link rel="stylesheet" href="~/lib/limonte-sweetalert2/sweetalert2.css" />
+        <!-- /custom from admin lte -->
+
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.bootstrap.min.css"
-              asp-fallback-href="~/lib/datatables/css/jquery.bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
@@ -36,6 +40,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Ficha" asp-action="Ficha">Ficha</a></li>
                 </ul>
                 <p class="nav navbar-text navbar-right">Hello, @User.Identity.Name!</p>
             </div>
@@ -54,10 +59,18 @@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- custom from admin lte -->
         <script src="~/lib/datatables/js/jquery.dataTables.js"></script>
         <script src="~/lib/datatables/js/dataTables.bootstrap.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-
+        <script src="~/lib/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <script src="~/lib/bootstrap-daterangepicker/moment.min.js"></script>
+        <script src="~/lib/popper.js/popper.js"></script>
+        <script src="~/lib/popper.js/popper-utils.js"></script>
+        <script src="~/lib/select2/js/select2.full.js"></script>
+        <script src="~/lib/toastr.js/toastr.min.js"></script>
+        <script src="~/lib/limonte-sweetalert2/sweetalert2.all.js"></script>
+        <!-- /custom from admin lte -->
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
 
