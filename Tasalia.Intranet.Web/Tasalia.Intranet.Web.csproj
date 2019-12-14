@@ -17,4 +17,8 @@
     <ProjectReference Include="..\Tasalia.Intranet.DataBase\Tasalia.Intranet.DataBase.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\dist\" />
+  </ItemGroup>
+
 </Project>
