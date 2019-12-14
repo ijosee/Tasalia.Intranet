@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasalia.Intranet.Web", "Tasalia.Intranet.Web\Tasalia.Intranet.Web.csproj", "{37AC30B4-00F3-414D-BE88-1F60F31F102C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasalia.Intranet.DataBase", "Tasalia.Intranet.DataBase\Tasalia.Intranet.DataBase.csproj", "{18CB28CA-4014-45EE-89A5-6F4EEDB93E82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{37AC30B4-00F3-414D-BE88-1F60F31F102C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37AC30B4-00F3-414D-BE88-1F60F31F102C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37AC30B4-00F3-414D-BE88-1F60F31F102C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37AC30B4-00F3-414D-BE88-1F60F31F102C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18CB28CA-4014-45EE-89A5-6F4EEDB93E82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18CB28CA-4014-45EE-89A5-6F4EEDB93E82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18CB28CA-4014-45EE-89A5-6F4EEDB93E82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18CB28CA-4014-45EE-89A5-6F4EEDB93E82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EC20ADC-3AA8-415C-BD59-D80A50A436C9}
+	EndGlobalSection
+EndGlobal
