@@ -19,6 +19,8 @@ namespace Tasalia.Intranet.Web.Controllers
                 IEnumerable<City> dbResult = from city in db.City
                                              select city;
 
+                var a = db.City.ToList();
+
                 foreach (var item in dbResult)
                 {
 
