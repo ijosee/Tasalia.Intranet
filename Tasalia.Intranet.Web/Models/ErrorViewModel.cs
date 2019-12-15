@@ -1,5 +1,3 @@
-using System;
-
 namespace Tasalia.Intranet.Web.Models
 {
     public class ErrorViewModel
