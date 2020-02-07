@@ -10,6 +10,7 @@ namespace Tasalia.Intranet.Web.Controllers
 {
     public class HomeController : Controller
     {
+
         public IActionResult Index()
         {
 

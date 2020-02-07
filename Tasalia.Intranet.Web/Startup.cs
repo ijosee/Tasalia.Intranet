@@ -30,8 +30,8 @@ namespace Tasalia.Intranet.Web
             });
 
             // credentials configurations
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CredentialsConnection")));
-            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<TasaliaCredentialsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CredentialsConnection")));
+            services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<TasaliaCredentialsContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

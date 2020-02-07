@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Tasalia.Intranet.Web.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class TasaliaCredentialsContext : IdentityDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public TasaliaCredentialsContext(DbContextOptions<TasaliaCredentialsContext> options)
             : base(options)
         {
         }

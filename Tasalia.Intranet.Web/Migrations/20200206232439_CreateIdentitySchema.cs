@@ -1,8 +1,8 @@
-using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace WebApplication1.Data.Migrations
+namespace Tasalia.Intranet.Web.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

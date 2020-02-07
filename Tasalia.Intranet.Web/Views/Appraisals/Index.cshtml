@@ -1,0 +1,130 @@
+﻿@model IEnumerable<Tasalia.Intranet.DataBase.Models.Appraisal>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#appraisalsTable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+}
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Listado</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Propiedad</a></li>
+                        <li class="breadcrumb-item active">Lista</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Propiedades</h3>
+                            <div class="card-tools">
+                                <!-- Buttons, labels, and many other things can be placed here! -->
+                                <!-- Here is a label for example -->
+                                @*<button type="button" class="btn btn-block bg-gradient-info">Crear nuevo</button>*@
+                                <a asp-action="Create">Crear nuevo registro</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" id="appraisalsTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.ProcessGuid)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Number)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Supplement)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.CreateDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.UpdateDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Deputation)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Property)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ProcessGuid)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Number)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Supplement)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreateDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UpdateDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Deputation.DeputationId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Property.PropertyId)
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.AppraisalId">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.AppraisalId">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.AppraisalId">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <h3></h3>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+</div>

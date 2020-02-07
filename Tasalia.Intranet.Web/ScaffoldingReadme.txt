@@ -16,3 +16,12 @@ The generated UI requires MVC. To add MVC to your app:
 
 Apps that use ASP.NET Core Identity should also use HTTPS. To enable HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
 
+
+// Migrations -> https://docs.microsoft.com/es-es/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-3.1&tabs=visual-studio
+
+CREATE LOGIN [tasalia_credentials] WITH PASSWORD = 'coolPassword'
+
+DROP USER tasalia_credentials
+
+select * from information_schema.schemata
+where schema_owner = 'tasalia_credentials_user_name'
