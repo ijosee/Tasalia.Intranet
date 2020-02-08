@@ -1,40 +1,798 @@
-﻿
+﻿@model IEnumerable<Tasalia.Intranet.DataBase.Models.Appraisal>
+
+@section Scripts{
+    /*
+    When load content in tab and this tab
+    is the active one, the content don´t come up.
+    As a work arround , play with jquery and simulate
+    a click on desired tab.
+    If you have more questions, ask good!
+    */
+    <script>
+        $('#custom-tabs-two-home-tab').click()
+        $('#custom-tabs-two-home-tab-two').click()
+        $(function () {
+            $('#combinationTable').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+}
+
 @{
     ViewData["Title"] = "Test";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Crear nueva ciudad</h1>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Nueva</h3>
-                            </div>
-                            <div class="card-body">
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Ficha de la propiedad</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary card-outline card-tabs">
+                        <div class="card-header p-0 pt-1 border-bottom-0">
+                            <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="false">Datos inmueble</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Situacion geografica</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-messages-tab" data-toggle="pill" href="#custom-tabs-two-messages" role="tab" aria-controls="custom-tabs-two-messages" aria-selected="true">Historial</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-settings-tab" data-toggle="pill" href="#custom-tabs-two-settings" role="tab" aria-controls="custom-tabs-two-settings" aria-selected="false">Testigos</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="custom-tabs-two-tabContent">
+                                <div class="tab-pane fade" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                                    <!-- form start -->
+                                    <form role="form">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="yearInput">Año</label>
+                                                        <input type="number" class="form-control" id="year" placeholder="Año">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="semesterInput">Sem</label>
+                                                                <input type="text" class="form-control" id="semesterInput" placeholder="Sem">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="tremesterInput">Trim</label>
+                                                                <input type="text" class="form-control" id="tremesterInput" placeholder="Trim">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="appraisalInput">Tasacion</label>
+                                                        <input type="text" class="form-control" id="appraisalInput" placeholder="Tasacion">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="suplementInput">Supl</label>
+                                                        <input type="text" class="form-control" id="suplementInput" placeholder="Supl">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="versionInput">Version</label>
+                                                        <input type="text" class="form-control" id="versionInput" placeholder="Version">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="delegationInput">Delegación</label>
+                                                        <input type="text" class="form-control" id="delegationInput" placeholder="Delegación">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="visiteDateInput">F. Visita</label>
+                                                        <input type="date" class="form-control" id="visiteDateInput" placeholder="F. Visita">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="valueDateInput">F. Valor</label>
+                                                        <input type="date" class="form-control" id="valueDateInput" placeholder="F. Valor">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="taserInput">Tasador</label>
+                                                        <input type="text" class="form-control" id="taserInput" placeholder="Tasador">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="backEntityInput">Entidad</label>
+                                                        <input type="text" class="form-control" id="backEntityInput" placeholder="Entidad">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label for="askerInput">Solicitante</label>
+                                                        <input type="text" class="form-control" id="askerInput" placeholder="Solicitante">
+                                                    </div>
+                                                </div>
+                                            </div>
 
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label for="finalityInput">Finalidad</label>
+                                                        <input type="number" class="form-control" id="finalityInput" placeholder="Finalidad">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Orden</label>
+                                                        <select class="custom-select">
+                                                            <option>Si</option>
+                                                            <option>No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Otros</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>1/2 Resid</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Tipologia</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label for="appraisalPropertyInput">Inmueble a tasar</label>
+                                                        <input type="text" class="form-control" id="appraisalPropertyInput" placeholder="Inmueble a tasar">
+                                                    </div>
+                                                </div>
+                                            </div>
 
-                            </div>
-                            <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Uso</label>
+                                                        <select class="custom-select">
+                                                            <option>Si</option>
+                                                            <option>No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Sub uso</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="form-group">
+                                                        <label for="floorInput">Suelo</label>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <input type="text" class="form-control" id="floorInput" placeholder="Suelo">
+                                                            </div>
+                                                            <div class="col">
+                                                                <select class="custom-select">
+                                                                    <option>Seleccione opcion</option>
+                                                                    <option>Si</option>
+                                                                    <option>No</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-5">
+                                                    <div class="form-group">
+                                                        <label>Metodo</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Pais</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Region</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Provincia</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Municipio</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label for="postalCenterInput">Nucleo postal</label>
+                                                        <input type="text" class="form-control" id="postalCenterInput" placeholder="Nucleo postal">
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label for="postalInput">Codigo postal</label>
+                                                        <input type="text" class="form-control" id="postalInput" placeholder="Codigo postal">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="streetTypeInput">Via</label>
+                                                                <input type="text" class="form-control" id="streetTypeInput" placeholder="Tipo via">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <label for="numberInput">N º</label>
+                                                                <input type="text" class="form-control" id="numberInput" placeholder="Numero">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="form-group">
+                                                        <label for="nameTypeInput">Nombre via</label>
+                                                        <input type="text" class="form-control" id="nameTypeInput" placeholder="Nombre via">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="data1Input">Dato 1</label>
+                                                        <input type="text" class="form-control" id="data1Input" placeholder="Dato 1">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="data2Input">Dato 2</label>
+                                                        <input type="text" class="form-control" id="data2Input" placeholder="Dato 2">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="data3Input">Dato 3</label>
+                                                        <input type="text" class="form-control" id="data3Input" placeholder="Dato 3">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="data4Input">Dato 4</label>
+                                                        <input type="text" class="form-control" id="data4Input" placeholder="Dato 4">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="data5Input">Dato 5</label>
+                                                        <input type="text" class="form-control" id="data5Input" placeholder="Dato 5">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Tipo inmueble</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label>VPO</label>
+                                                        <select class="custom-select">
+                                                            <option>Si</option>
+                                                            <option>No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Categoria</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Calidad construccion</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label>Rehab.</label>
+                                                        <select class="custom-select">
+                                                            <option>Si</option>
+                                                            <option>No</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Tipo</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="yearReh">Reh Edie</label>
+                                                        <input type="number" class="form-control" id="yearReh" placeholder="Año Reh Edie">
+                                                    </div>
+                                                </div>
+                                                <div class="col-1">
+                                                    <div class="form-group">
+                                                        <label for="yearElem">Reh Elem</label>
+                                                        <input type="number" class="form-control" id="yearElem" placeholder="Año Reh Elemento">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="form-group">
+                                                        <label>Tipo comprador</label>
+                                                        <select class="custom-select">
+                                                            <option>Seleccione opcion</option>
+                                                            <option>opcion 1</option>
+                                                            <option>opcion 2</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <div class="form-group">
+                                                        <label for="valueNotesInput">Notas valor</label>
+                                                        <input type="text" class="form-control" id="valueNotesInput" placeholder="Notas valor">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" style="background-color:gainsboro">
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="floorBuildInput">Superficie construida</label>
+                                                        <input type="number" class="form-control" id="floorBuildInput" placeholder="Superficie construida">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="priceMeterInput">Precio m2</label>
+                                                        <input type="number" class="form-control" id="priceMeterInput" placeholder="Precio m2">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="partialValueInput">Valor parcial</label>
+                                                        <input type="number" class="form-control" id="partialValueInput" placeholder="Valor parcial">
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group">
+                                                        <label for="totalValueInput">Valor total</label>
+                                                        <input type="number" class="form-control" id="totalValueInput" placeholder="Valor total">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer">
+                                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+                                    <div class="row">
+                                        <div class="col">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d11571.355305694857!2d-5.65651035!3d43.5265536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0xd367c851eaa9dfd%3A0x3e4d8cfe48497913!2sCeares%2C%2033204%20Gij%C3%B3n%2C%20Asturias!3m2!1d43.5282676!2d-5.6540047!5e0!3m2!1ses!2ses!4v1581171126075!5m2!1ses!2ses" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Pais</label>
+                                                            <select class="custom-select">
+                                                                <option>Seleccione opcion</option>
+                                                                <option>opcion 1</option>
+                                                                <option>opcion 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Region</label>
+                                                            <select class="custom-select">
+                                                                <option>Seleccione opcion</option>
+                                                                <option>opcion 1</option>
+                                                                <option>opcion 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Provincia</label>
+                                                            <select class="custom-select">
+                                                                <option>Seleccione opcion</option>
+                                                                <option>opcion 1</option>
+                                                                <option>opcion 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label>Municipio</label>
+                                                            <select class="custom-select">
+                                                                <option>Seleccione opcion</option>
+                                                                <option>opcion 1</option>
+                                                                <option>opcion 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="postalCenterInput">Nucleo postal</label>
+                                                            <input type="text" class="form-control" id="postalCenterInput" placeholder="Nucleo postal">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="postalInput">Codigo postal</label>
+                                                            <input type="text" class="form-control" id="postalInput" placeholder="Codigo postal">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="col-12">
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="streetTypeInput">Via</label>
+                                                                    <input type="text" class="form-control" id="streetTypeInput" placeholder="Tipo via">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <div class="form-group">
+                                                                    <label for="numberInput">N º</label>
+                                                                    <input type="text" class="form-control" id="numberInput" placeholder="Numero">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="nameTypeInput">Nombre via</label>
+                                                            <input type="text" class="form-control" id="nameTypeInput" placeholder="Nombre via">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="data1Input">Dato 1</label>
+                                                            <input type="text" class="form-control" id="data1Input" placeholder="Dato 1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="data2Input">Dato 2</label>
+                                                            <input type="text" class="form-control" id="data2Input" placeholder="Dato 2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="data3Input">Dato 3</label>
+                                                            <input type="text" class="form-control" id="data3Input" placeholder="Dato 3">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="data4Input">Dato 4</label>
+                                                            <input type="text" class="form-control" id="data4Input" placeholder="Dato 4">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label for="data5Input">Dato 5</label>
+                                                            <input type="text" class="form-control" id="data5Input" placeholder="Dato 5">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade active show" id="custom-tabs-two-messages" role="tabpanel" aria-labelledby="custom-tabs-two-messages-tab">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- The time line -->
+                                            <div class="timeline">
+                                                <!-- timeline time label -->
+                                                <div class="time-label">
+                                                    <span class="bg-red">10 Feb. 2020</span>
+                                                </div>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                    <i class="fas fa-envelope bg-blue"></i>
+                                                    <div class="timeline-item">
+                                                        <span class="time"><i class="fas fa-clock"></i> 12:05</span>
+                                                        <h3 class="timeline-header"><a href="#">Support Team</a> enviado mail al propietario</h3>
+
+                                                        <div class="timeline-body">
+                                                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                                                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                                                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                                                            quora plaxo ideeli hulu weebly balihoo...
+                                                        </div>
+                                                        <div class="timeline-footer">
+                                                            <a class="btn btn-primary btn-sm">Leer mas..</a>
+                                                            <a class="btn btn-danger btn-sm">Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                    <i class="fas fa-comments bg-yellow"></i>
+                                                    <div class="timeline-item">
+                                                        <span class="time"><i class="fas fa-clock"></i> 27 mins ago</span>
+                                                        <h3 class="timeline-header"><a href="#">Jay White</a> tu post ha sido comentado</h3>
+                                                        <div class="timeline-body">
+                                                            Espectacular vistas desde el balcon
+                                                        </div>
+                                                        <div class="timeline-footer">
+                                                            <a class="btn btn-warning btn-sm">ver comentario</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <!-- timeline time label -->
+                                                <div class="time-label">
+                                                    <span class="bg-green">3 enero 2020</span>
+                                                </div>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                <div>
+                                                    <i class="fa fa-camera bg-purple"></i>
+                                                    <div class="timeline-item">
+                                                        <span class="time"><i class="fas fa-clock"></i> hace dos dias</span>
+                                                        <h3 class="timeline-header"><a href="#">Joan balaguer</a> Actualizas fotos del inmueble</h3>
+                                                        <div class="timeline-body">
+                                                            <img src="http://placehold.it/150x100" alt="...">
+                                                            <img src="http://placehold.it/150x100" alt="...">
+                                                            <img src="http://placehold.it/150x100" alt="...">
+                                                            <img src="http://placehold.it/150x100" alt="...">
+                                                            <img src="http://placehold.it/150x100" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END timeline item -->
+                                                <div>
+                                                    <i class="fas fa-clock bg-gray"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-two-settings" role="tabpanel" aria-labelledby="custom-tabs-two-settings-tab">
+                                    No existe desarrollo para este apartado
+                                </div>
                             </div>
                         </div>
+                        <!-- /.card -->
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-primary card-outline card-tabs">
+                        <div class="card-header p-0 pt-1 border-bottom-0">
+                            <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-home-tab-two" data-toggle="pill" href="#custom-tabs-two-home-two" role="tab" aria-controls="custom-tabs-two-home" aria-selected="false">Anexos tasacion</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="custom-tabs-two-profile-tab-two" data-toggle="pill" href="#custom-tabs-two-profile-two" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Testigos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-messages-tab-two" data-toggle="pill" href="#custom-tabs-two-messages-two" role="tab" aria-controls="custom-tabs-two-messages" aria-selected="true">Valoraciones</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-settings-tab-two" data-toggle="pill" href="#custom-tabs-two-settings-two" role="tab" aria-controls="custom-tabs-two-settings" aria-selected="false">Graficas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="custom-tabs-two-settings-tab-two" data-toggle="pill" href="#custom-tabs-two-settings-two-two" role="tab" aria-controls="custom-tabs-two-settings" aria-selected="false">Observaciones</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="custom-tabs-two-tabContent">
+                                <div class="tab-pane fade" id="custom-tabs-two-home-two" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                                    <table class="table" id="combinationTable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.ProcessGuid)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Number)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Supplement)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CreateDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.UpdateDate)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Deputation)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Property)
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if(Model != null){ 
+                                                foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.ProcessGuid)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Number)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Supplement)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.CreateDate)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.UpdateDate)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Deputation.DeputationId)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Property.PropertyId)
+                                                        </td>
+                                                        <td>
+                                                            <a asp-action="Edit" asp-route-id="@item.AppraisalId">Edit</a> |
+                                                            <a asp-action="Details" asp-route-id="@item.AppraisalId">Details</a> |
+                                                            <a asp-action="Delete" asp-route-id="@item.AppraisalId">Delete</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                                }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-two-profile-two" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+                                </div>
+                                <div class="tab-pane fade active show" id="custom-tabs-two-messages-two" role="tabpanel" aria-labelledby="custom-tabs-two-messages-tab">
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-two-settings-two" role="tabpanel" aria-labelledby="custom-tabs-two-settings-tab">
+                                </div>
+                                <div class="tab-pane fade" id="custom-tabs-two-settings-two-two" role="tabpanel" aria-labelledby="custom-tabs-two-settings-tab">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
